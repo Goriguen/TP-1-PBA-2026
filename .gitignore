@@ -1,0 +1,26 @@
+*.class
+*.log
+
+# --- Ant / NetBeans build outputs ---
+build/
+dist/
+nbbuild/
+nbdist/
+nbactions.xml
+
+# --- NetBeans project private settings (NO compartir) ---
+nbproject/private/
+
+# --- OS ---
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- Editor/IDE extras (si usás otros) ---
+.vscode/
+.idea/
+*.swp
+
+# --- Env / secrets (si llegaran a existir) ---
+.env
+.env.*
