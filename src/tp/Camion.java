@@ -17,5 +17,16 @@ public class Camion extends Vehiculo{
     public String descripcionTipo() {
         return "Camion";
     }
-    
+
+    @Override
+    public String toString() {
+        return "Camion{"
+                + "id=" + getId()
+                + ", bateriaActual=" + getBateriaActual()
+                + ", capacidadCargaKg=" + getCapacidadCargaKg()
+                + ", tieneRemolque=" + this.tieneRemolque
+                + '}';
+    }
+
+
 }
