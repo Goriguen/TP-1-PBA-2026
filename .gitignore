@@ -7,6 +7,8 @@ dist/
 nbbuild/
 nbdist/
 nbactions.xml
+build.xml
+manifest.mf
 
 # --- NetBeans project private settings (NO compartir) ---
 nbproject/private/
