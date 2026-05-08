@@ -3,16 +3,32 @@ package tp;
 
 public abstract class Vehiculo {
     
-    protected String id;
-
-    protected double capacidadCargaKg;
-    protected static final double BATERIA_MAXIMA = 100;
-    protected double bateriaActual = BATERIA_MAXIMA;
+    private String id;
+    private double capacidadCargaKg;
+    private static final double BATERIA_MAXIMA = 100;
+    private double bateriaActual = BATERIA_MAXIMA;
     
     public Vehiculo(String id, double capacidadCargaKg) {
         this.id = id;
         this.capacidadCargaKg = capacidadCargaKg;
     }
+
+    public String getId() {
+        return id;
+    }
+
+    public double getCapacidadCargaKg() {
+        return capacidadCargaKg;
+    }
+
+    public static double getBATERIA_MAXIMA() {
+        return BATERIA_MAXIMA;
+    }
+
+    public double getBateriaActual() {
+        return bateriaActual;
+    }
+    
     
     protected void cargarBateria (double cantidad){}
     
@@ -26,6 +42,9 @@ public abstract class Vehiculo {
 
     @Override
     public String toString() {
-        return "Vehiculo{" + "id=" + id + ", bateriaActual=" + bateriaActual + ", capacidadCargaKg=" + capacidadCargaKg + '}';
+        return this.getClass().getSimpleName() + '{' +
+                "id=" + getId() +
+                ", bateriaActual=" + getBateriaActual() +
+                ", capacidadCargaKg=" + getCapacidadCargaKg() + '}';
     }
 }

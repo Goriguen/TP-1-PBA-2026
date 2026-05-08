@@ -7,7 +7,7 @@ public class Moto extends Vehiculo{
     public Moto(String id, double capacidadCargaKg) {
         super(id, capacidadCargaKg);
     }
-
+    
     @Override
     public void desplazarse(double distanciaKm) {}
 
@@ -15,11 +15,7 @@ public class Moto extends Vehiculo{
     public String descripcionTipo() {
         return "Moto";
     }
-
-  
-    
-
-    
+ 
     
 }
 
