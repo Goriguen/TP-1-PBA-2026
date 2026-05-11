@@ -6,7 +6,7 @@ public class Repartidor {
     private double resistencia = 100.0;
     private double pesoMaximoCarga;
     private PuntoDeDistribucion ubicacionActual;
-    private Vehiculo vehiculoActual;
+    private Vehiculo vehiculoActual = null;
 
     public Repartidor(String nombre, double pesoMaximoCarga, PuntoDeDistribucion ubicacionActual, Vehiculo vehiculoActual) {
         this.nombre = nombre;
@@ -16,7 +16,35 @@ public class Repartidor {
     }
 
     public void viajarA(PuntoDeDistribucion destino) {
-
+        double distancia = ubicacionActual.distanciaA(destino);
+        if (vehiculoActual != null) {
+            //¿Tiene batería suficiente?
+            double consumo = vehiculoActual.consumoDeBateria(distancia);
+            if (vehiculoActual.bateriaDisponible() >= consumo) {
+            vehiculoActual.desplazarse(distancia);
+            ubicacionActual = destino;
+            System.out.println(nombre + " viajando en vehículo a " + destino.getNombreNodo());
+            } else {
+                System.out.println("No hay batería suficiente en el vehículo para este viaje. Debe recargar.");
+            }
+        } else {
+            double resistenciaNecesaria = distancia * 0.8;
+            if (resistencia > resistenciaNecesaria) {
+                resistencia -= resistenciaNecesaria;
+                ubicacionActual = destino;
+                System.out.println(nombre + " viajó a pie a " + destino.getNombreNodo());
+            } else {
+                System.out.println("Necesita descansar para completar el viaje. Faltan " +
+                    String.format("%.2f", resistenciaNecesaria - resistencia) + " puntos de resistencia.");
+            }
+            //if(resistencia)
+            //necesito una lógica que averigüe si lo que va a recorrer
+            //excede la resistencia que tiene el personaje, es decir
+            //si el viaje consume 30 de resistencia y se está en 20
+            //que no permita hacer el viaje, indique cuanta resistencia falta,
+            //e imprima por pantalla: necesita descansar.
+            //descansar ofrece +30 pts de resistencia.
+        }
     }
 
     public boolean puedeCargar(Paquete p) {
@@ -24,18 +52,36 @@ public class Repartidor {
         return resultado;
     }
 
-    public void descansar() {
+    protected void descansar() {
+        double resultado = resistencia + 30;
+        if (resultado > 100) //si el descanso +30 pts + resistencia actual es >
+        //que resistencia maxima, entonces el max es 100
+        {
+            resistencia = 100.0;
+        }
     }
 
     public void equiparVehiculo(Vehiculo v) {
+        //implementar una lógica que permita elegir un vehiculo pre-cargado
+        //posiblemente de un array de vehiculos
     }
 
     public void desequiparVehiculo() {
+        //de la misma forma que el método anterior, una lógica que permita
+        //desequipar el vehiculo actual
+        //pero sería necesario entonces que el vehículo sea devuelto, ¿no?
+        //¿tendría que tener un booleano que dice: vehíchulo disponible/ocupado?
+        //sería útil hacerlo así
+
     }
 
     @Override
     public String toString() {
         return "Repartidor{" + "nombre=" + nombre + ", resistencia=" + resistencia + ", pesoMaximoCarga=" + pesoMaximoCarga + ", ubicacionActual=" + ubicacionActual + ", vehiculoActual=" + vehiculoActual + '}';
+    }
+
+    private void desplazarse() {
+        
     }
 
 
