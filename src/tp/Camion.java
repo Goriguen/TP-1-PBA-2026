@@ -5,7 +5,7 @@ public class Camion extends Vehiculo{
     
     private boolean tieneRemolque;
 
-    public Camion(boolean tieneRemolque, String id, double capacidadCargaKg) {
+    public Camion(boolean tieneRemolque, String id,  double capacidadCargaKg) {
         super(id, capacidadCargaKg);
         this.tieneRemolque = tieneRemolque;
     }
