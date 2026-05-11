@@ -3,14 +3,15 @@ package tp;
 
 public abstract class Vehiculo {
     
-    protected String id;
-    protected double capacidadCargaKg;
+    private String id;
+    private double capacidadCargaKg;
     private static final double BATERIA_MAXIMA = 100;
-    protected double bateriaActual = BATERIA_MAXIMA;
+    private double bateriaActual;
     
     public Vehiculo(String id, double capacidadCargaKg) {
         this.id = id;
         this.capacidadCargaKg = capacidadCargaKg;
+        this.bateriaActual = BATERIA_MAXIMA;
     }
 
     public String getId() {
