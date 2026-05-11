@@ -14,7 +14,8 @@ public class Moto extends Vehiculo{
     public String descripcionTipo() {
         return "Moto";
     }
- 
+
+    
     
 }
 

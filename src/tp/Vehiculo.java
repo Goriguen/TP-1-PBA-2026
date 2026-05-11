@@ -26,7 +26,7 @@ public abstract class Vehiculo {
         return BATERIA_MAXIMA;
     }
 
-    public double getBateriaActual() {
+    private double getBateriaActual() {
         return bateriaActual;
     }
 
@@ -75,7 +75,7 @@ public abstract class Vehiculo {
     public String toString() {
         return this.getClass().getSimpleName() + '{' +
                 "id=" + getId() +
-                ", bateriaActual=" + getBateriaActual() +
+                ", bateriaActual=" + bateriaDisponible() +
                 ", capacidadCargaKg=" + getCapacidadCargaKg() + '}';
     }
 }

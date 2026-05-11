@@ -22,7 +22,7 @@ public class Camion extends Vehiculo{
     public String toString() {
         return "Camion{"
                 + "id=" + getId()
-                + ", bateriaActual=" + getBateriaActual()
+                + ", bateriaActual=" + bateriaDisponible()
                 + ", capacidadCargaKg=" + getCapacidadCargaKg()
                 + ", tieneRemolque=" + this.tieneRemolque
                 + '}';
