@@ -54,11 +54,16 @@ public class Repartidor {
 
     protected void descansar() {
         double resultado = resistencia + 30;
-        if (resultado > 100) //si el descanso +30 pts + resistencia actual es >
+        if (resultado >= 100)
+        //si el descanso +30 pts + resistencia actual es mayyor
         //que resistencia maxima, entonces el max es 100
         {
             resistencia = 100.0;
         }
+        else{
+            resistencia += 30.0;
+        }
+            
     }
 
     public void equiparVehiculo(Vehiculo v) {

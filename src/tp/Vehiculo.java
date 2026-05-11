@@ -35,7 +35,13 @@ public abstract class Vehiculo {
     }
 
     protected void setBateriaActual(double bateriaActual) {
-        this.bateriaActual = bateriaActual;
+        if (bateriaActual < 0) {
+            this.bateriaActual = 0;
+        }else if (bateriaActual > BATERIA_MAXIMA) {
+        this.bateriaActual = BATERIA_MAXIMA;
+        } else {
+            this.bateriaActual = bateriaActual;
+        }
     }
     
     
