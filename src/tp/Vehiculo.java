@@ -64,7 +64,7 @@ public abstract class Vehiculo {
     }
     
     protected double bateriaDisponible(){
-        double bateriaRestante=0.0;
+        double bateriaRestante = (getBateriaActual() * 100.0) / BATERIA_MAXIMA ;
         return bateriaRestante;
     }
     
