@@ -20,6 +20,9 @@ public class TPMain {
         System.out.println("CARGANDO BATERÍA");
         m1.cargarBateria(27);
         System.out.printf("La cantidad de bateria actual es: \n%.2f%%\n\n" , m1.bateriaDisponible());
+        
+        System.out.printf("El consumo de bateria de un camión es %.2f%%\n\n" , c1.consumoDeBateria(43));
+        System.out.printf("El consumo de bateria de una moto es es %.2f%%\n\n" , m1.consumoDeBateria(30));
 
 
 

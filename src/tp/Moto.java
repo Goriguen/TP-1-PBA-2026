@@ -15,6 +15,17 @@ public class Moto extends Vehiculo{
         return "Moto";
     }
 
+    @Override
+    public String toString() {
+        return super.toString(); 
+    }
+
+    @Override
+    protected double consumoDeBateria(double distancia) {
+        double consumo = distancia * 0.5;
+        return consumo;
+    }
+
     
     
 }

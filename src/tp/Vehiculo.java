@@ -14,7 +14,7 @@ public abstract class Vehiculo {
         this.bateriaActual = BATERIA_MAXIMA;
     }
 
-    public String getId() {
+    protected String getId() {
         return id;
     }
 
@@ -30,16 +30,16 @@ public abstract class Vehiculo {
         return bateriaActual;
     }
 
-    public void setCapacidadCargaKg(double capacidadCargaKg) {
+    protected void setCapacidadCargaKg(double capacidadCargaKg) {
         this.capacidadCargaKg = capacidadCargaKg;
     }
 
-    public void setBateriaActual(double bateriaActual) {
+    protected void setBateriaActual(double bateriaActual) {
         this.bateriaActual = bateriaActual;
     }
     
     
-    public void cargarBateria (double cantidad){
+    protected void cargarBateria (double cantidad){
         double carga;
         //casos borde a evaluar:
         //1)¿Qué pasa si la bateria actual es 0?
@@ -68,8 +68,9 @@ public abstract class Vehiculo {
         return bateriaRestante;
     }
     
-    public abstract void desplazarse(double distanciaKm);
-    public abstract String descripcionTipo();
+    protected abstract void desplazarse(double distanciaKm);
+    protected abstract String descripcionTipo();
+    protected abstract double consumoDeBateria(double distancia);
 
     @Override
     public String toString() {

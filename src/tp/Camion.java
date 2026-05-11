@@ -19,6 +19,18 @@ public class Camion extends Vehiculo{
     }
 
     @Override
+    protected double consumoDeBateria(double distancia) {
+        
+        double consumo;
+        if(tieneRemolque != false){
+            consumo = distancia * 2.5;
+        }else{
+            consumo = distancia * 1.8;
+        }
+        return consumo;
+    }
+    
+    @Override
     public String toString() {
         return "Camion{"
                 + "id=" + getId()
