@@ -48,9 +48,29 @@ public class Repartidor {
     }
 
     public boolean puedeCargar(Paquete p) {
-        boolean resultado = false;
-        return resultado;
-    }
+        public boolean puedeCargar(Paquete p) {
+            double peso = p.getPeso();
+
+            // validación 1:peso inválido
+            if (peso <= 0) {
+                System.out.println("El peso no es un número válido.");
+                return false;
+            }
+            // validación 2: a pie o con vehículo
+            if (vehiculoActual == null) {
+                if (peso > pesoMaximoCarga || resistencia <= 20.0) {
+                    System.out.println("No puede cargar a pie.");
+                    return false;
+                }
+            } else {
+                if (peso > vehiculoActual.getCapacidadCargaKg()) {
+                    System.out.println("Excede capacidad del vehículo.");
+                    return false;
+                }
+            }
+            System.out.println("Puede cargar el paquete.");
+            return true;
+        }
 
     protected void descansar() {
         double resultado = resistencia + 30;
