@@ -61,7 +61,8 @@ public abstract class Vehiculo {
         //4)¿Qué pasa si cantidad >= 0? ==> No aplica. La condición 1 y 2 evalúa si es = 0
         //5¿Qué pasa si cantidad > BATERIA_MAXIMA? ==> Se cumple en la condición 3
         if(cantidad > 0 && cantidad > BATERIA_MAXIMA){
-            carga = BATERIA_MAXIMA - bateriaActual;
+            double diferencia = BATERIA_MAXIMA - bateriaActual;
+            double carga = diferencia + bateriaActual;
             setBateriaActual(carga);
         }else{
             carga = bateriaActual + cantidad;
