@@ -26,6 +26,9 @@ public abstract class Vehiculo {
         return BATERIA_MAXIMA;
     }
 
+    //se hace private para poder utilizar la lógica en cargarBateria
+    //así exponer el output en ese método incluyendo el porcentaje
+    //y no tener 2 métodos que cumplan la misma función
     private double getBateriaActual() {
         return bateriaActual;
     }
@@ -57,7 +60,6 @@ public abstract class Vehiculo {
         //3)¿Qué pasa si cantidad > 0?
         //4)¿Qué pasa si cantidad >= 0? ==> No aplica. La condición 1 y 2 evalúa si es = 0
         //5¿Qué pasa si cantidad > BATERIA_MAXIMA? ==> Se cumple en la condición 3
-        
         if(cantidad > 0 && cantidad > BATERIA_MAXIMA){
             carga = BATERIA_MAXIMA - bateriaActual;
             setBateriaActual(carga);
