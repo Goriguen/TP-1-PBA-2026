@@ -32,23 +32,47 @@ public class Paquete implements Comparable<Paquete>, Cloneable {
         return urgente;
     }
 
-    public void setUrgente(boolean urgente) {
+    protected void setUrgente(boolean urgente) {
         this.urgente = urgente;
     }
 
     @Override
     public String toString() {
-        return "Paquete{" + "id=" + id + ", descripcion=" + descripcion + ", peso=" + peso + ", urgente=" + urgente + '}';
+        return "Paquete{" + "id=" + id +
+                ", descripcion=" + descripcion +
+                ", peso=" + peso + ", urgente=" +
+                urgente + '}';
     }
 
     @Override
     protected Object clone() {
-        return 0; 
+
+        Paquete copia = new Paquete(this.id, this.descripcion, this.peso, this.urgente);
+        return copia;
     }
 
     @Override
     public int compareTo(Paquete o) {
-        return 0;
+
+        //Paquetes urgentes van primero
+        if(this.urgente && !o.urgente) {
+            return -1;
+        }
+        if(!this.urgente && o.urgente) {
+            return 1;
+        }
+
+        //Si ambos son urgentes, el de menor peso va primero
+        if(this.peso < o.peso) {
+            return -1;
+        }
+        if(this.peso > o.peso) {
+            return 1;
+        }
+
+        //Si tienen el mismo peso, ordena por orden alfabético
+        int resultado = this.id.compareTo(o.id);
+        return resultado;
     }
 
     
