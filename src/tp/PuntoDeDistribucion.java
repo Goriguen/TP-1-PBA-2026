@@ -35,21 +35,35 @@ public class PuntoDeDistribucion implements Conectable {
         return distancia;
     }
 
- 
+
 
     @Override
     public boolean conectarALaRed() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if(visitado == true){
+            conectado = true;
+            System.out.println("Conectado");
+            return true;
+        }else{
+            System.out.println("No pudo ser conectado");
+            return false;
+        }
     }
 
     @Override
     public boolean estaConectado() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if(conectado == false){
+            System.out.println("No se encuentra conectado a esta red aún.");
+            return false;
+        }else{
+            System.out.println("Conectado a esta red.");
+            return true;
+        }
     }
 
     @Override
     public String getNombreNodo() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        String nombreNodo = "El nombre del nodo es: " + this.nombre + ".";
+        return nombreNodo;
     }
 
     @Override
