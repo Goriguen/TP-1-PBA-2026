@@ -8,14 +8,36 @@ public class Repartidor {
     private PuntoDeDistribucion ubicacionActual;
     private Vehiculo vehiculoActual = null;
 
+    public String getNombre() {
+        return nombre;
+    }
+
+    public double getPesoMaximoCarga() {
+        return pesoMaximoCarga;
+    }
+
+    public Vehiculo getVehiculoActual() {
+        return vehiculoActual;
+    }
+
+    public PuntoDeDistribucion getUbicacionActual() {
+        return ubicacionActual;
+    }
+
+    public double getResistencia() {
+        return resistencia;
+    }
+
     public Repartidor(String nombre, double pesoMaximoCarga, PuntoDeDistribucion ubicacionActual, Vehiculo vehiculoActual) {
         this.nombre = nombre;
         this.pesoMaximoCarga = pesoMaximoCarga;
         this.ubicacionActual = ubicacionActual;
         this.vehiculoActual = vehiculoActual;
+
+
     }
 
-    public void viajarA(PuntoDeDistribucion destino) {
+    protected void viajarA(PuntoDeDistribucion destino) {
         double distancia = ubicacionActual.distanciaA(destino);
         if (vehiculoActual != null) {
             //¿Tiene batería suficiente?
@@ -47,30 +69,29 @@ public class Repartidor {
         }
     }
 
-    public boolean puedeCargar(Paquete p) {
-        public boolean puedeCargar(Paquete p) {
-            double peso = p.getPeso();
+    protected boolean puedeCargar(Paquete p) {
+        double peso = p.getPeso();
 
-            // validación 1:peso inválido
-            if (peso <= 0) {
-                System.out.println("El peso no es un número válido.");
+        // validación 1:peso inválido
+        if (peso <= 0) {
+            System.out.println("El peso no es un número válido.");
+            return false;
+        }
+        // validación 2: a pie o con vehículo
+        if (vehiculoActual == null) {
+            if (peso > pesoMaximoCarga || resistencia <= 20.0) {
+                System.out.println("No puede cargar a pie.");
                 return false;
             }
-            // validación 2: a pie o con vehículo
-            if (vehiculoActual == null) {
-                if (peso > pesoMaximoCarga || resistencia <= 20.0) {
-                    System.out.println("No puede cargar a pie.");
-                    return false;
-                }
-            } else {
-                if (peso > vehiculoActual.getCapacidadCargaKg()) {
-                    System.out.println("Excede capacidad del vehículo.");
-                    return false;
-                }
+        } else {
+            if (peso > vehiculoActual.getCapacidadCargaKg()) {
+                System.out.println("Excede capacidad del vehículo.");
+                return false;
             }
-            System.out.println("Puede cargar el paquete.");
-            return true;
         }
+        System.out.println("Puede cargar el paquete.");
+        return true;
+    }
 
     protected void descansar() {
         double resultado = resistencia + 30;
@@ -86,14 +107,14 @@ public class Repartidor {
             
     }
 
-    public void equiparVehiculo(Vehiculo v) {
+    protected void equiparVehiculo(Vehiculo v) {
         //implementar una lógica que permita elegir un vehiculo pre-cargado
         //posiblemente de un array de vehiculos
         this.vehiculoActual = v;
         System.out.println(nombre + " equipó un " + v.descripcionTipo());
     }
 
-    public void desequiparVehiculo() {
+    protected void desequiparVehiculo() {
         //de la misma forma que el método anterior, una lógica que permita
         //desequipar el vehiculo actual
         //pero sería necesario entonces que el vehículo sea devuelto, ¿no?
@@ -112,7 +133,7 @@ public class Repartidor {
         return "Repartidor{" + "nombre=" + nombre + ", resistencia=" + resistencia + ", pesoMaximoCarga=" + pesoMaximoCarga + ", ubicacionActual=" + ubicacionActual + ", vehiculoActual=" + vehiculoActual + '}';
     }
 
-    private void desplazarse() {
+    protected void desplazarse() {
         
     }
 

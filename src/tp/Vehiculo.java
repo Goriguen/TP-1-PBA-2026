@@ -14,7 +14,7 @@ public abstract class Vehiculo {
         this.bateriaActual = BATERIA_MAXIMA;
     }
 
-    protected String getId() {
+    public String getId() {
         return id;
     }
 
@@ -62,7 +62,7 @@ public abstract class Vehiculo {
         //5¿Qué pasa si cantidad > BATERIA_MAXIMA? ==> Se cumple en la condición 3
         if(cantidad > 0 && cantidad > BATERIA_MAXIMA){
             double diferencia = BATERIA_MAXIMA - bateriaActual;
-            double carga = diferencia + bateriaActual;
+            carga = diferencia + bateriaActual;
             setBateriaActual(carga);
         }else{
             carga = bateriaActual + cantidad;
