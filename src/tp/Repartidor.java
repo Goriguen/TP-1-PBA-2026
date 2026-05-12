@@ -29,7 +29,7 @@ public class Repartidor {
             }
         } else {
             double resistenciaNecesaria = distancia * 0.8;
-            if (resistencia > resistenciaNecesaria) {
+            if (resistencia >= resistenciaNecesaria) {
                 resistencia -= resistenciaNecesaria;
                 ubicacionActual = destino;
                 System.out.println(nombre + " viajó a pie a " + destino.getNombreNodo());
@@ -37,13 +37,13 @@ public class Repartidor {
                 System.out.println("Necesita descansar para completar el viaje. Faltan " +
                     String.format("%.2f", resistenciaNecesaria - resistencia) + " puntos de resistencia.");
             }
-            //if(resistencia)
+            //if(resistencia), explicación del método:
             //necesito una lógica que averigüe si lo que va a recorrer
             //excede la resistencia que tiene el personaje, es decir
             //si el viaje consume 30 de resistencia y se está en 20
             //que no permita hacer el viaje, indique cuanta resistencia falta,
-            //e imprima por pantalla: necesita descansar.
-            //descansar ofrece +30 pts de resistencia.
+            // e imprima por pantalla: necesita descansar.
+            // descansar ofrece +30 pts de resistencia.
         }
     }
 
