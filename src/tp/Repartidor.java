@@ -89,6 +89,8 @@ public class Repartidor {
     public void equiparVehiculo(Vehiculo v) {
         //implementar una lógica que permita elegir un vehiculo pre-cargado
         //posiblemente de un array de vehiculos
+        this.vehiculoActual = v;
+        System.out.println(nombre + " equipó un " + v.descripcionTipo());
     }
 
     public void desequiparVehiculo() {
@@ -97,7 +99,12 @@ public class Repartidor {
         //pero sería necesario entonces que el vehículo sea devuelto, ¿no?
         //¿tendría que tener un booleano que dice: vehíchulo disponible/ocupado?
         //sería útil hacerlo así
-
+        if (vehiculoActual != null) {
+            System.out.println(nombre + " desequipó el " + vehiculoActual.descripcionTipo());
+            this.vehiculoActual = null;
+        } else {
+            System.out.println(nombre + " no tiene vehículo equipado.");
+        }
     }
 
     @Override
