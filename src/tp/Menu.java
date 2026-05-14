@@ -18,6 +18,12 @@ public class Menu {
 
     //=================MENU PRINCIPAL===========================
     public void ejecutar() {
+
+        if (sam == null) {
+            PuntoDeDistribucion inicio = new PuntoDeDistribucion("Central", 0, 0);
+            sam = new Repartidor("Sam", 20.0, inicio, null);
+        }
+
         int op;
 
         do {
