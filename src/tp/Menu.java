@@ -531,8 +531,7 @@ public class Menu {
             valor = scanner.nextLine().trim().toLowerCase();
             if (valor.equals("s")) {
                 return true;
-            }
-            if (valor.equals("n")) {
+            } else if (valor.equals("n")) {
                 return false;
             }
             System.out.println("Ingresá 's' o 'n'.");
