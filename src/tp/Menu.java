@@ -6,6 +6,7 @@ public class Menu {
 
     private static final int MAX_PAQUETES = 10;
     private static final int MAX_VEHICULOS = 5;
+    private static final double COSTO_RESISTENCIA_POR_KM = 0.8;
     // Se usa un valor chico para simular una partida real con pocos nodos activos.
     private static final int MAX_PUNTOS = 10;
 
@@ -418,7 +419,7 @@ public class Menu {
             double costoBateria = sam.getVehiculoActual().consumoDeBateria(distancia);
             System.out.printf("Costo estimado del viaje en batería: %.2f%%%n", costoBateria);
         } else {
-            double costoResistencia = distancia * 0.8;
+            double costoResistencia = distancia * COSTO_RESISTENCIA_POR_KM;
             System.out.printf("Costo estimado del viaje a pie en resistencia: %.2f%n", costoResistencia);
         }
 
