@@ -3,6 +3,9 @@ package tp;
 public class TPMain {
 
     public static void main(String[] args) {
+
+        Menu menu = new Menu();
+        menu.ejecutar();
         
         Vehiculo[] vehiculos = new Vehiculo[2];
         vehiculos[0] = new Moto("RAM-CABA01", 35);
