@@ -336,29 +336,15 @@ public class Menu {
             sc.nextLine();
 
             switch (op) {
-                case 1:
-                    registrarPunto();
+                case 1: registrarPunto();
                     break;
-                case 2:
-                    listarPuntos();
+                case 2: conectarTodosLosPuntos();
                     break;
-                case 3:
-                    marcarPuntoVisitado();
+                case 3: verEstadoDeLaRed();
                     break;
-                case 4:
-                    conectarPunto();
+                case 0: System.out.println("Volviendo...");
                     break;
-                case 5:
-                    verificarConexionPunto();
-                    break;
-                case 6:
-                    distanciaEntrePuntos();
-                    break;
-                case 0:
-                    System.out.println("Volviendo...");
-                    break;
-                default:
-                    System.out.println("Opcion invalida.");
+                default: System.out.println("Opcion invalida.");
                     break;
             }
 
@@ -545,7 +531,7 @@ public class Menu {
         double bateriaAntes;
 
         if (v != null) {
-            bateriaAntes = v.bateriaDisponible;
+            bateriaAntes = v.bateriaDisponible();
         } else {
             bateriaAntes = 0.0;
         }
