@@ -36,6 +36,11 @@ public class Paquete implements Comparable<Paquete>, Cloneable {
         this.urgente = urgente;
     }
 
+    public void setId(String id) {
+        if(id == null) return;
+        this.id = id;
+    }
+
     @Override
     public String toString() {
         return "Paquete{" + "id=" + id +
