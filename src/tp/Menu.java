@@ -331,11 +331,8 @@ public class Menu {
         do {
             System.out.println("\n=== Submenu 3 - Gestion de puntos de distribucion ===");
             System.out.println("1. Registrar punto");
-            System.out.println("2. Listar puntos");
-            System.out.println("3. Marcar punto como visitado");
-            System.out.println("4. Conectar punto a la red");
-            System.out.println("5. Ver si un punto esta conectado");
-            System.out.println("6. Distancia entre dos puntos");
+            System.out.println("2. Conectar todos los puntos");
+            System.out.println("3. Ver estado de la red");
             System.out.println("0. Volver");
             System.out.print("Opcion: ");
             op = sc.nextInt();
