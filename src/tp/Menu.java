@@ -56,6 +56,7 @@ public class Menu {
                     break;
                 case 0:
                     System.out.println("Saliendo del programa...");
+                    scanner.close();
                     break;
                 default:
                     System.out.println("Opción inválida.");
@@ -141,6 +142,8 @@ public class Menu {
             return;
         }
 
+        // Se usa clone() para cumplir el requisito del TP y luego se crea
+        // una nueva instancia con el nuevo ID porque Paquete no tiene setter de id.
         Paquete paqueteClonado = (Paquete) paquetes[indice].clone();
 
         String nuevoId = leerTextoNoVacio("Nuevo ID para el paquete clonado: ");
@@ -525,10 +528,10 @@ public class Menu {
         while (true) {
             System.out.print(mensaje);
             valor = scanner.nextLine().trim().toLowerCase();
-            if (valor.equals("s") || valor.equals("si")) {
+            if (valor.equals("s")) {
                 return true;
             }
-            if (valor.equals("n") || valor.equals("no")) {
+            if (valor.equals("n")) {
                 return false;
             }
             System.out.println("Ingresá 's' o 'n'.");
