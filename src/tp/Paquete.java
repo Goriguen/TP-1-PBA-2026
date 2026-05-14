@@ -36,6 +36,18 @@ public class Paquete implements Comparable<Paquete>, Cloneable {
         this.urgente = urgente;
     }
 
+    protected void setId(String id) {
+        if (id == null) {
+            System.out.println("ID invalido (null).");
+            return;
+        }
+        if (id.trim().isEmpty()) {
+            System.out.println("ID invalido. No puede estar vacio.");
+            return;
+        }
+        this.id = id;
+    }
+
     @Override
     public String toString() {
         return "Paquete{" + "id=" + id +
@@ -75,8 +87,8 @@ public class Paquete implements Comparable<Paquete>, Cloneable {
         return resultado;
     }
 
-    
-    
+
+
     
     }
 
