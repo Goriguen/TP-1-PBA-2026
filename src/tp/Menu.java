@@ -332,7 +332,12 @@ public class Menu {
 
         for (int i = 0; i < nodos.length; i++) {
             System.out.print("Conectando " + nodos[i].getNombreNodo() + " -> ");
-            nodos[i].conectarALaRed();
+            boolean conectado = nodos[i].conectarALaRed();
+            if (conectado) {
+                System.out.println("Resultado: conectado");
+            } else {
+                System.out.println("Resultado: no conectado");
+            }
         }
     }
 
@@ -540,7 +545,7 @@ public class Menu {
 
     private boolean existePaqueteConId(String id) {
         for (int i = 0; i < cantidadPaquetes; i++) {
-            if (paquetes[i].getId().equalsIgnoreCase(id)) {
+            if (paquetes[i].getId().equals(id)) {
                 return true;
             }
         }
@@ -549,7 +554,7 @@ public class Menu {
 
     private boolean existeVehiculoConId(String id) {
         for (int i = 0; i < cantidadVehiculos; i++) {
-            if (vehiculos[i].getId().equalsIgnoreCase(id)) {
+            if (vehiculos[i].getId().equals(id)) {
                 return true;
             }
         }
