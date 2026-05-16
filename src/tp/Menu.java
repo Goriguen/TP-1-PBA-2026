@@ -123,13 +123,19 @@ public class Menu {
         }
         System.out.print("ID: ");
         String id = sc.nextLine();
+        
+        while (idPaqueteRepetido(id)) {
+            System.out.println("El ID ingresado ya pertenece a otro paquete. Ingrese otro.");
+            System.out.print("ID: ");
+            id = sc.nextLine();
+        }
 
         System.out.print("Descripcion: ");
         String descripcion = sc.nextLine();
 
         System.out.print("Peso (kg): ");
         double peso = sc.nextDouble();
-        sc.nextLine(); // limpiar Enter
+        sc.nextLine();
 
         if (peso <= 0) {
             System.out.println("Peso invalido. Debe ser mayor a 0.");
@@ -138,7 +144,7 @@ public class Menu {
 
         System.out.print("Es urgente? (1=si, 0=no): ");
         int urg = sc.nextInt();
-        sc.nextLine(); // limpiar Enter
+        sc.nextLine();
 
         boolean urgente = (urg == 1);
 
@@ -187,6 +193,12 @@ public class Menu {
 
         System.out.print("Nuevo ID para el clon: ");
         String nuevoId = sc.nextLine();
+        
+        while (idPaqueteRepetido(nuevoId)) {
+            System.out.println("El ID ingresado ya pertenece a otro paquete. Ingrese otro.");
+            System.out.print("Nuevo ID para el clon: ");
+            nuevoId = sc.nextLine();
+        }
 
         copia.setId(nuevoId);
 
@@ -197,6 +209,15 @@ public class Menu {
     }
 
 
+    private boolean idPaqueteRepetido(String id) {
+        for (int i = 0; i < cantPaquetes; i++) {
+            if (paquetes[i] != null && id.equals(paquetes[i].getId())) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
     private void ordenarPaquetesPorPrioridad() {
         if (cantPaquetes == 0) {
             System.out.println("No hay paquetes para ordenar.");
