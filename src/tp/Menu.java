@@ -317,42 +317,44 @@ public class Menu {
             System.out.println("El ID ingresado ya pertenece a otro vehiculo. Ingrese otro.");
             System.out.print("ID: ");
             id = sc.nextLine();
-            
+            if (esVacio(id) == true) {
+                return;
+            }
+        }
 
-            System.out.print("Capacidad de carga (Kg): ");
-            double capacidad = sc.nextDouble();
+        System.out.print("Capacidad de carga (Kg): ");
+        double capacidad = sc.nextDouble();
+        sc.nextLine();
+
+        if (capacidad <= 0) {
+            System.out.println("Capacidad invalida. Debe ser mayor a 0.");
+            return;
+        }
+
+        if (tipo == 1) {
+            vehiculos[cantVehiculos] = new Moto(id, capacidad);
+            cantVehiculos++;
+            System.out.println("Moto registrada.");
+        } else if (tipo == 2) {
+            System.out.print("Tiene remolque? (1=si, 0=no): ");
+            int rem = sc.nextInt();
             sc.nextLine();
 
-            if (capacidad <= 0) {
-                System.out.println("Capacidad invalida. Debe ser mayor a 0.");
+            boolean tieneRemolque;
+            if (rem == 1) {
+                tieneRemolque = true;
+            } else if (rem == 0) {
+                tieneRemolque = false;
+            } else {
+                System.out.println("Opcion invalida. Debe ser 1 o 0.");
                 return;
             }
 
-            if (tipo == 1) {
-                vehiculos[cantVehiculos] = new Moto(id, capacidad);
-                cantVehiculos++;
-                System.out.println("Moto registrada.");
-            } else if (tipo == 2) {
-                System.out.print("Tiene remolque? (1=si, 0=no): ");
-                int rem = sc.nextInt();
-                sc.nextLine();
-
-                boolean tieneRemolque;
-                if (rem == 1) {
-                    tieneRemolque = true;
-                } else if (rem == 0) {
-                    tieneRemolque = false;
-                } else {
-                    System.out.println("Opcion invalida. Debe ser 1 o 0.");
-                    return;
-                }
-
-                vehiculos[cantVehiculos] = new Camion(tieneRemolque, id, capacidad);
-                cantVehiculos++;
-                System.out.println("Camion registrado.");
-            } else {
-                System.out.println("Tipo invalido. No se registro el vehiculo.");
-            }
+            vehiculos[cantVehiculos] = new Camion(tieneRemolque, id, capacidad);
+            cantVehiculos++;
+            System.out.println("Camion registrado.");
+        } else {
+            System.out.println("Tipo invalido. No se registro el vehiculo.");
         }
     }
     
