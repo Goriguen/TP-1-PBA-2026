@@ -33,8 +33,6 @@ public class Repartidor {
         this.pesoMaximoCarga = pesoMaximoCarga;
         this.ubicacionActual = ubicacionActual;
         this.vehiculoActual = vehiculoActual;
-
-
     }
 
     protected void viajarA(PuntoDeDistribucion destino) {
@@ -111,7 +109,7 @@ public class Repartidor {
         //implementar una lógica que permita elegir un vehiculo pre-cargado
         //posiblemente de un array de vehiculos
         this.vehiculoActual = v;
-        System.out.println(nombre + " equipó un " + v.descripcionTipo());
+        System.out.println(nombre + " equipó " + v.descripcionTipo());
     }
 
     protected void desequiparVehiculo() {
@@ -121,7 +119,7 @@ public class Repartidor {
         //¿tendría que tener un booleano que dice: vehíchulo disponible/ocupado?
         //sería útil hacerlo así
         if (vehiculoActual != null) {
-            System.out.println(nombre + " desequipó el " + vehiculoActual.descripcionTipo());
+            System.out.println(nombre + " desequipó " + vehiculoActual.descripcionTipo());
             this.vehiculoActual = null;
         } else {
             System.out.println(nombre + " no tiene vehículo equipado.");
@@ -130,12 +128,14 @@ public class Repartidor {
 
     @Override
     public String toString() {
-        return "Repartidor{" + "nombre=" + nombre + ", resistencia=" + resistencia + ", pesoMaximoCarga=" + pesoMaximoCarga + ", ubicacionActual=" + ubicacionActual + ", vehiculoActual=" + vehiculoActual + '}';
+        return "Repartidor{" + "nombre=" + nombre +
+                ", resistencia=" + resistencia +
+                ", pesoMaximoCarga=" + pesoMaximoCarga +
+                ", ubicacionActual=" + ubicacionActual +
+                ", vehiculoActual=" + vehiculoActual + '}';
     }
 
-    protected void desplazarse() {
-        
-    }
+    protected void desplazarse() {}
 
 
 }

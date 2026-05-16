@@ -12,7 +12,7 @@ public class Moto extends Vehiculo{
         double consumo = consumoDeBateria(distanciaKm);
         double bateriaActualizada = bateriaDisponible() - consumo;
         setBateriaActual(bateriaActualizada);
-        System.out.println("Moto: desplazado " + distanciaKm + " km. Batería restante: "
+        System.out.println("Vehiculo: Moto. Desplazado " + String.format("%.2f" ,distanciaKm) + " km. Batería restante: "
                 + String.format("%.2f%%", bateriaDisponible()));
     }
 
@@ -23,7 +23,7 @@ public class Moto extends Vehiculo{
     //el tipo de Vehiculo de la clase
     @Override
     public String descripcionTipo() {
-        return "Moto";
+        return "Una Moto";
     }
 
     @Override

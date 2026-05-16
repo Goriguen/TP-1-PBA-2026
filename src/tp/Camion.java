@@ -15,7 +15,7 @@ public class Camion extends Vehiculo{
         double consumo = consumoDeBateria(distanciaKm);
         double bateriaActualizada = bateriaDisponible() - consumo;
         setBateriaActual(bateriaActualizada);
-        System.out.println("Camión: desplazado " + distanciaKm + " km. Batería restante: "
+        System.out.println("Vehiculo: Camión. Desplazado " + String.format("%.2f", distanciaKm) + " km. Batería restante: "
                 + String.format("%.2f%%", bateriaDisponible()));
     }
 
@@ -26,7 +26,7 @@ public class Camion extends Vehiculo{
     //el tipo de Vehiculo de la clase
     @Override
     public String descripcionTipo() {
-        return "Camion";
+        return "Un Camion";
     }
 
     @Override

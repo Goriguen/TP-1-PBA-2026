@@ -52,18 +52,15 @@ public class PuntoDeDistribucion implements Conectable {
     @Override
     public boolean estaConectado() {
         if(conectado == false){
-            System.out.println("No se encuentra conectado a esta red aún.");
             return false;
         }else{
-            System.out.println("Conectado a esta red.");
             return true;
         }
     }
 
     @Override
     public String getNombreNodo() {
-        String nombreNodo = "El nombre del nodo es: " + this.nombre + ".";
-        return nombreNodo;
+        return this.nombre;
     }
 
     protected void setNombre(String nombre) {
@@ -72,7 +69,11 @@ public class PuntoDeDistribucion implements Conectable {
 
     @Override
     public String toString() {
-        return "PuntoDeDistribucion{" + "nombre=" + nombre + ", coordenadaX=" + coordenadaX + ", coordenadaY=" + coordenadaY + ", conectado=" + conectado + ", visitado=" + visitado + '}';
+        return "PuntoDeDistribucion{" + "nombre=" + nombre +
+                ", coordenadaX=" + coordenadaX + 
+                ", coordenadaY=" + coordenadaY +
+                ", conectado=" + conectado +
+                ", visitado=" + visitado + '}';
     }
     
     

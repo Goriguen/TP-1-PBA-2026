@@ -123,7 +123,11 @@ public class Menu {
         }
         System.out.print("ID: ");
         String id = sc.nextLine();
-        
+
+        if (esVacio(id)==true){
+            return;
+        }
+
         while (idPaqueteRepetido(id)) {
             System.out.println("El ID ingresado ya pertenece a otro paquete. Ingrese otro.");
             System.out.print("ID: ");
@@ -132,6 +136,10 @@ public class Menu {
 
         System.out.print("Descripcion: ");
         String descripcion = sc.nextLine();
+
+        if (esVacio(descripcion)==true){
+            return;
+        }
 
         System.out.print("Peso (kg): ");
         double peso = sc.nextDouble();
@@ -145,6 +153,10 @@ public class Menu {
         System.out.print("Es urgente? (1=si, 0=no): ");
         int urg = sc.nextInt();
         sc.nextLine();
+
+        if (validaBoolean(urg)==false){
+            return;
+        }
 
         boolean urgente = (urg == 1);
 
@@ -193,6 +205,10 @@ public class Menu {
 
         System.out.print("Nuevo ID para el clon: ");
         String nuevoId = sc.nextLine();
+
+        if (esVacio(nuevoId)==true){
+            return;
+        }
         
         while (idPaqueteRepetido(nuevoId)) {
             System.out.println("El ID ingresado ya pertenece a otro paquete. Ingrese otro.");
@@ -287,46 +303,67 @@ public class Menu {
         System.out.println("1. Moto");
         System.out.println("2. Camion");
         System.out.print("Tipo: ");
+
         int tipo = sc.nextInt();
         sc.nextLine();
 
         System.out.print("ID: ");
         String id = sc.nextLine();
-
-        System.out.print("Capacidad de carga (Kg): ");
-        double capacidad = sc.nextDouble();
-        sc.nextLine();
-
-        if (capacidad <= 0) {
-            System.out.println("Capacidad invalida. Debe ser mayor a 0.");
+        if (esVacio(id) == true) {
             return;
         }
 
-        if (tipo == 1) {
-            vehiculos[cantVehiculos] = new Moto(id, capacidad);
-            cantVehiculos++;
-            System.out.println("Moto registrada.");
-        } else if (tipo == 2) {
-            System.out.print("Tiene remolque? (1=si, 0=no): ");
-            int rem = sc.nextInt();
+        while (idVehiculoRepetido(id)) {
+            System.out.println("El ID ingresado ya pertenece a otro vehiculo. Ingrese otro.");
+            System.out.print("ID: ");
+            id = sc.nextLine();
+            
+
+            System.out.print("Capacidad de carga (Kg): ");
+            double capacidad = sc.nextDouble();
             sc.nextLine();
 
-            boolean tieneRemolque;
-            if (rem == 1) {
-                tieneRemolque = true;
-            } else if (rem == 0) {
-                tieneRemolque = false;
-            } else {
-                System.out.println("Opcion invalida. Debe ser 1 o 0.");
+            if (capacidad <= 0) {
+                System.out.println("Capacidad invalida. Debe ser mayor a 0.");
                 return;
             }
 
-            vehiculos[cantVehiculos] = new Camion(tieneRemolque, id, capacidad);
-            cantVehiculos++;
-            System.out.println("Camion registrado.");
-        } else {
-            System.out.println("Tipo invalido. No se registro el vehiculo.");
+            if (tipo == 1) {
+                vehiculos[cantVehiculos] = new Moto(id, capacidad);
+                cantVehiculos++;
+                System.out.println("Moto registrada.");
+            } else if (tipo == 2) {
+                System.out.print("Tiene remolque? (1=si, 0=no): ");
+                int rem = sc.nextInt();
+                sc.nextLine();
+
+                boolean tieneRemolque;
+                if (rem == 1) {
+                    tieneRemolque = true;
+                } else if (rem == 0) {
+                    tieneRemolque = false;
+                } else {
+                    System.out.println("Opcion invalida. Debe ser 1 o 0.");
+                    return;
+                }
+
+                vehiculos[cantVehiculos] = new Camion(tieneRemolque, id, capacidad);
+                cantVehiculos++;
+                System.out.println("Camion registrado.");
+            } else {
+                System.out.println("Tipo invalido. No se registro el vehiculo.");
+            }
         }
+    }
+    
+
+    private boolean idVehiculoRepetido(String id) {
+        for (int i = 0; i < cantVehiculos; i++) {
+            if (vehiculos[i] != null && id.equals(vehiculos[i].getId())) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private void listarVehiculos() {
@@ -391,8 +428,7 @@ public class Menu {
         System.out.print("Nombre: ");
         String nombre = sc.nextLine();
 
-        if (nombre.trim().isEmpty()) {
-            System.out.println("Nombre invalido. No puede estar vacio.");
+        if (esVacio(nombre) == true) {
             return;
         }
 
@@ -624,4 +660,24 @@ public class Menu {
         boolean ok = sam.puedeCargar(paquetes[numeroIndice]);
         System.out.println(ok ? "SI puede cargar" : "NO puede cargar");
     }
-}
+
+    //  ---------------------- AUXILIAR -------------------------
+    boolean esVacio(String n){
+        if ((n == null) || (n.trim().isEmpty())) {
+            System.out.println("El sistema no acepta campos vacios");
+            return true;
+        }
+        else
+            return false;
+    }
+
+    boolean validaBoolean(int n){
+        if ((n == 1) || (n==0)) {
+            return true;
+        }
+        else {
+            System.out.println("El sistema necesita que se ingrese 0/1");
+            return false;
+        }
+    }
+    }
