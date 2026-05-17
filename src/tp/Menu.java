@@ -499,6 +499,7 @@ public class Menu {
             System.out.println("4. Descansar");
             System.out.println("5. Cargar bateria");
             System.out.println("6. Simular carga");
+            System.out.println("7. Desequipar Vehiculo");
             System.out.println("0. Volver");
             System.out.print("Opcion: ");
             op = sc.nextInt();
@@ -523,6 +524,8 @@ public class Menu {
                 case 6:
                     simularCarga();
                     break;
+                case 7:
+                    desequiparVehiculoSam();
                 case 0:
                     System.out.println("Volviendo...");
                     break;
@@ -563,6 +566,10 @@ public class Menu {
         }
 
         sam.equiparVehiculo(vehiculos[numeroIndice]);
+    }
+
+    private void desequiparVehiculoSam() {
+        sam.desequiparVehiculo();
     }
 
     private void viajarConSam() {
