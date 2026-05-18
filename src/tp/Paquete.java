@@ -37,16 +37,13 @@ public class Paquete implements Comparable<Paquete>, Cloneable {
     }
 
     protected void setId(String id) {
-        if (id == null) {
+        if ((id == null) || (id.trim().isEmpty())) {
             System.out.println("ID invalido (null).");
-            return;
-        }
-        if (id.trim().isEmpty()) {
-            System.out.println("ID invalido. No puede estar vacio.");
             return;
         }
         this.id = id;
     }
+    
 
     @Override
     public String toString() {

@@ -4,21 +4,106 @@ import java.util.Scanner;
 
 public class Menu {
 
-    private Paquete[] paquetes = new Paquete[10];
-    private Vehiculo[] vehiculos = new Vehiculo[5];
-    private PuntoDeDistribucion[] puntos = new PuntoDeDistribucion[10];
+    private Paquete[] paquetes = new Paquete[20];
+    private Vehiculo[] vehiculos = new Vehiculo[20];
+    private PuntoDeDistribucion[] puntos = new PuntoDeDistribucion[20];
 
     private int cantPaquetes = 0;
     private int cantVehiculos = 0;
     private int cantPuntos = 0;
-
+    
     private Repartidor sam;
 
     private Scanner sc = new Scanner(System.in);
 
     //=================MENU PRINCIPAL===========================
-    public void ejecutar() {
-
+    public void ejecutar() {   
+         ///-------------------TEST ----------------------
+         /// ----------------PAQUETES---------------------
+        Paquete a = new Paquete("01", "PKG-1", 8.0, true);
+        paquetes[cantPaquetes] = a;
+        cantPaquetes++;
+        
+        Paquete b = new Paquete("02", "PKG-2", 20.0, false);
+        paquetes[cantPaquetes] = b;
+        cantPaquetes++;
+        
+        Paquete c = new Paquete("03", "PKG-3", 15.0, true);
+        paquetes[cantPaquetes] = c;
+        cantPaquetes++;
+        
+        Paquete d = new Paquete("04", "PKG-4", 150.0, false);
+        paquetes[cantPaquetes] = d;
+        cantPaquetes++;
+        
+        
+        Paquete e = new Paquete("05", "PKG-5", 75.0, true);
+        paquetes[cantPaquetes] = e;
+        cantPaquetes++;
+        
+        
+         /// ----------------VEHICULOS---------------------
+        Vehiculo v1 = new Moto ("MOTO-1", 25.0);
+        vehiculos[cantVehiculos] = v1;
+        cantVehiculos++;
+        
+        Vehiculo v2 = new Moto ("MOTO-2", 15.0);
+        vehiculos[cantVehiculos] = v2;
+        cantVehiculos++;
+        
+        Vehiculo v3 = new Camion (false, "CAM-1SR", 300.0);
+        vehiculos[cantVehiculos] = v3;
+        cantVehiculos++;
+        
+        Vehiculo v4 = new Camion (true, "CAM-2CR", 1000.0);
+        vehiculos[cantVehiculos] = v4;
+        cantVehiculos++;
+        
+        
+        // --------PUNTOS DE DISTRIBUCION -------------
+        PuntoDeDistribucion p1 = new PuntoDeDistribucion("PUNTO-1", 0, 0);
+        puntos[cantPuntos] = p1;
+        cantPuntos++;
+        
+        PuntoDeDistribucion p2 = new PuntoDeDistribucion("PUNTO-2", 60, 80);
+        puntos[cantPuntos] = p2;
+        cantPuntos++;
+        
+        PuntoDeDistribucion p3 = new PuntoDeDistribucion("PUNTO-3", 75, 100);
+        puntos[cantPuntos] = p3;
+        cantPuntos++;
+        
+        PuntoDeDistribucion p4 = new PuntoDeDistribucion("PUNTO-4", 120, 160);
+        puntos[cantPuntos] = p4;
+        cantPuntos++;
+        
+        PuntoDeDistribucion p5 = new PuntoDeDistribucion("PUNTO-5", 150, 200);
+        puntos[cantPuntos] = p5;
+        cantPuntos++;
+        
+        PuntoDeDistribucion p6 = new PuntoDeDistribucion("PUNTO-6", 2, 5);
+        puntos[cantPuntos] = p6;
+        cantPuntos++;
+        
+        PuntoDeDistribucion p7 = new PuntoDeDistribucion("PUNTO-7", 15, 30);
+        puntos[cantPuntos] = p7;
+        cantPuntos++;
+        
+        
+        PuntoDeDistribucion p8 = new PuntoDeDistribucion("PUNTO-8", 55, 190);
+        puntos[cantPuntos] = p8;
+        cantPuntos++;
+        
+        PuntoDeDistribucion p9 = new PuntoDeDistribucion("PUNTO-9", -40, -60);
+        puntos[cantPuntos] = p9;
+        cantPuntos++;
+        
+        PuntoDeDistribucion p10 = new PuntoDeDistribucion("PUNTO-10", -90,-170);
+        puntos[cantPuntos] = p10;
+        cantPuntos++;
+        
+        
+        
         if (sam == null) {
             PuntoDeDistribucion inicio = new PuntoDeDistribucion("Central", 0, 0);
             sam = new Repartidor("Sam", 20.0, inicio, null);
@@ -121,8 +206,14 @@ public class Menu {
             System.out.println("No se pueden registrar mas paquetes (sistema lleno).");
             return;
         }
+        
         System.out.print("ID: ");
         String id = sc.nextLine();
+        
+        if (esVacio(id)==true){
+            return;
+        }
+        
         
         while (idPaqueteRepetido(id)) {
             System.out.println("El ID ingresado ya pertenece a otro paquete. Ingrese otro.");
@@ -132,6 +223,11 @@ public class Menu {
 
         System.out.print("Descripcion: ");
         String descripcion = sc.nextLine();
+        
+         if (esVacio(descripcion)==true){
+            return;
+        }
+        
 
         System.out.print("Peso (kg): ");
         double peso = sc.nextDouble();
@@ -145,7 +241,12 @@ public class Menu {
         System.out.print("Es urgente? (1=si, 0=no): ");
         int urg = sc.nextInt();
         sc.nextLine();
-
+        
+        if (validaBoolean(urg)==false){
+            return;
+        }
+        
+        
         boolean urgente = (urg == 1);
 
         Paquete p = new Paquete(id, descripcion, peso, urgente);
@@ -193,6 +294,10 @@ public class Menu {
 
         System.out.print("Nuevo ID para el clon: ");
         String nuevoId = sc.nextLine();
+        
+         if (esVacio(nuevoId)==true){
+            return;
+        }
         
         while (idPaqueteRepetido(nuevoId)) {
             System.out.println("El ID ingresado ya pertenece a otro paquete. Ingrese otro.");
@@ -292,7 +397,17 @@ public class Menu {
 
         System.out.print("ID: ");
         String id = sc.nextLine();
-
+         if (esVacio(id)==true){
+            return;
+        }
+        
+         while (idVehiculoRepetido(id)) {
+            System.out.println("El ID ingresado ya pertenece a otro vehiculo. Ingrese otro.");
+            System.out.print("ID: ");
+            id = sc.nextLine();
+        }
+        
+        
         System.out.print("Capacidad de carga (Kg): ");
         double capacidad = sc.nextDouble();
         sc.nextLine();
@@ -301,20 +416,29 @@ public class Menu {
             System.out.println("Capacidad invalida. Debe ser mayor a 0.");
             return;
         }
-
+        
+        double distanciaM = 0.0;
         if (tipo == 1) {
-            vehiculos[cantVehiculos] = new Moto(id, capacidad);
+            distanciaM = 200.0;
+            vehiculos[cantVehiculos] = new Moto (id, capacidad); 
             cantVehiculos++;
             System.out.println("Moto registrada.");
         } else if (tipo == 2) {
             System.out.print("Tiene remolque? (1=si, 0=no): ");
             int rem = sc.nextInt();
             sc.nextLine();
-
+            
+             if (validaBoolean(rem)==false){
+            return;
+            }
+             
+             
             boolean tieneRemolque;
             if (rem == 1) {
+                distanciaM = 40.0;
                 tieneRemolque = true;
             } else if (rem == 0) {
+                distanciaM = 55.55;
                 tieneRemolque = false;
             } else {
                 System.out.println("Opcion invalida. Debe ser 1 o 0.");
@@ -329,6 +453,15 @@ public class Menu {
         }
     }
 
+     private boolean idVehiculoRepetido(String id) {
+        for (int i = 0; i < cantVehiculos; i++) {
+            if (vehiculos[i] != null && id.equals(vehiculos[i].getId())) {
+                return true;
+            }
+        }
+        return false;
+    }
+     
     private void listarVehiculos() {
         if (cantVehiculos == 0) {
             System.out.println("No hay vehiculos registrados.");
@@ -390,9 +523,7 @@ public class Menu {
 
         System.out.print("Nombre: ");
         String nombre = sc.nextLine();
-
-        if (nombre.trim().isEmpty()) {
-            System.out.println("Nombre invalido. No puede estar vacio.");
+         if (esVacio(nombre)==true){
             return;
         }
 
@@ -461,6 +592,7 @@ public class Menu {
             System.out.println("4. Descansar");
             System.out.println("5. Cargar bateria");
             System.out.println("6. Simular carga");
+            System.out.println("7. Desequipar Vehiculo");
             System.out.println("0. Volver");
             System.out.print("Opcion: ");
             op = sc.nextInt();
@@ -484,6 +616,9 @@ public class Menu {
                     break;
                 case 6:
                     simularCarga();
+                    break;
+                case 7:
+                    desequiparVehiculoSam();
                     break;
                 case 0:
                     System.out.println("Volviendo...");
@@ -526,6 +661,11 @@ public class Menu {
 
         sam.equiparVehiculo(vehiculos[numeroIndice]);
     }
+    
+     private void desequiparVehiculoSam() {
+         sam.desequiparVehiculo();
+     }
+    
 
     private void viajarConSam() {
         if (cantPuntos == 0) {
@@ -549,7 +689,7 @@ public class Menu {
         }
 
         PuntoDeDistribucion destino = puntos[numeroIndice];
-
+        
         Vehiculo v = sam.getVehiculoActual();
         double resistenciaAntes = sam.getResistencia();
         double bateriaAntes;
@@ -559,7 +699,7 @@ public class Menu {
         } else {
             bateriaAntes = 0.0;
         }
-
+        
         sam.viajarA(destino);
 
         if (sam.getUbicacionActual() == destino) {
@@ -581,7 +721,12 @@ public class Menu {
     }
 
     private void descansarSam() {
+        if (sam.getResistencia()==100){
+            System.out.println("Sam tiene su resistencia al maximo no necesita descansar.");  
+        }
+        else {
         sam.descansar();
+        }
         System.out.println("Resistencia actual: " + sam.getResistencia());
     }
 
@@ -624,4 +769,26 @@ public class Menu {
         boolean ok = sam.puedeCargar(paquetes[numeroIndice]);
         System.out.println(ok ? "SI puede cargar" : "NO puede cargar");
     }
+    
+  //  ---------------------- AUXILIAR -------------------------
+    boolean esVacio(String n){
+     if ((n == null) || (n.trim().isEmpty())) {
+            System.out.println("El sistema no acepta campos vacios");
+            return true;
+        }
+     else 
+         return false;
 }
+    
+    boolean validaBoolean(int n){
+     if ((n == 1) || (n==0)) {
+            return true;
+        }
+     else {
+         System.out.println("El sistema necesita que se ingrese 0/1");
+         return false;
+     }
+}
+}
+
+ 

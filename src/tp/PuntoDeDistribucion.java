@@ -62,7 +62,7 @@ public class PuntoDeDistribucion implements Conectable {
 
     @Override
     public String getNombreNodo() {
-        String nombreNodo = "El nombre del nodo es: " + this.nombre + ".";
+        String nombreNodo = this.nombre + ".";
         return nombreNodo;
     }
 
@@ -72,7 +72,11 @@ public class PuntoDeDistribucion implements Conectable {
 
     @Override
     public String toString() {
-        return "PuntoDeDistribucion{" + "nombre=" + nombre + ", coordenadaX=" + coordenadaX + ", coordenadaY=" + coordenadaY + ", conectado=" + conectado + ", visitado=" + visitado + '}';
+        return "PuntoDeDistribucion{" + "nombre=" + nombre +
+                ", coordenadaX=" + coordenadaX +
+                ", coordenadaY=" + coordenadaY +
+                ", conectado=" + conectado +
+                ", visitado=" + visitado + '}';
     }
     
     

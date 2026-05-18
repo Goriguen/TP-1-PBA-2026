@@ -27,38 +27,51 @@ public class Repartidor {
     public double getResistencia() {
         return resistencia;
     }
+    
 
     public Repartidor(String nombre, double pesoMaximoCarga, PuntoDeDistribucion ubicacionActual, Vehiculo vehiculoActual) {
         this.nombre = nombre;
         this.pesoMaximoCarga = pesoMaximoCarga;
         this.ubicacionActual = ubicacionActual;
         this.vehiculoActual = vehiculoActual;
-
-
     }
 
     protected void viajarA(PuntoDeDistribucion destino) {
         double distancia = ubicacionActual.distanciaA(destino);
+       
+        //Con vehiculo
         if (vehiculoActual != null) {
+            if (vehiculoActual.distanciaMaxima < distancia){
+            System.out.println("La distancia ingresada supera la distancia maxima que puede recorrer el vehiculo\nDistancia ingresada: " +
+                                String.format("%.2f" , distancia) +             
+                                "\nDistancia maxima " + String.format("%.2f", vehiculoActual.distanciaMaxima) + "\n" );
+                return;
+            }
             //¿Tiene batería suficiente?
             double consumo = vehiculoActual.consumoDeBateria(distancia);
+            
             if (vehiculoActual.bateriaDisponible() >= consumo) {
-            vehiculoActual.desplazarse(distancia);
-            ubicacionActual = destino;
-            System.out.println(nombre + " viajando en vehículo a " + destino.getNombreNodo());
-            } else {
+                vehiculoActual.desplazarse(distancia);
+                ubicacionActual = destino;
+                System.out.println(nombre + " viajando en vehículo a :" + destino.getNombreNodo());
+            }else{
                 System.out.println("No hay batería suficiente en el vehículo para este viaje. Debe recargar.");
             }
+            return;    
+        }
+
+        //Sin vehiculo
+        double resistenciaNecesaria = distancia * 0.8;
+        
+        if (resistencia >= resistenciaNecesaria) {
+            resistencia -= resistenciaNecesaria;
+            ubicacionActual = destino;
+            System.out.println(nombre + " viajó a pie a " + destino.getNombreNodo());
         } else {
-            double resistenciaNecesaria = distancia * 0.8;
-            if (resistencia >= resistenciaNecesaria) {
-                resistencia -= resistenciaNecesaria;
-                ubicacionActual = destino;
-                System.out.println(nombre + " viajó a pie a " + destino.getNombreNodo());
-            } else {
                 System.out.println("Necesita descansar para completar el viaje. Faltan " +
-                    String.format("%.2f", resistenciaNecesaria - resistencia) + " puntos de resistencia.");
-            }
+                String.format("%.2f", resistenciaNecesaria - resistencia) + " puntos de resistencia.");
+        }
+        
             //if(resistencia), explicación del método:
             //necesito una lógica que averigüe si lo que va a recorrer
             //excede la resistencia que tiene el personaje, es decir
@@ -66,7 +79,6 @@ public class Repartidor {
             //que no permita hacer el viaje, indique cuanta resistencia falta,
             // e imprima por pantalla: necesita descansar.
             // descansar ofrece +30 pts de resistencia.
-        }
     }
 
     protected boolean puedeCargar(Paquete p) {
@@ -80,16 +92,13 @@ public class Repartidor {
         // validación 2: a pie o con vehículo
         if (vehiculoActual == null) {
             if (peso > pesoMaximoCarga || resistencia <= 20.0) {
-                System.out.println("No puede cargar a pie.");
                 return false;
             }
         } else {
             if (peso > vehiculoActual.getCapacidadCargaKg()) {
-                System.out.println("Excede capacidad del vehículo.");
                 return false;
             }
         }
-        System.out.println("Puede cargar el paquete.");
         return true;
     }
 
@@ -104,14 +113,14 @@ public class Repartidor {
         else{
             resistencia += 30.0;
         }
-            
+        System.out.println("Sam descanso.");    
     }
 
     protected void equiparVehiculo(Vehiculo v) {
         //implementar una lógica que permita elegir un vehiculo pre-cargado
         //posiblemente de un array de vehiculos
         this.vehiculoActual = v;
-        System.out.println(nombre + " equipó un " + v.descripcionTipo());
+        System.out.println(nombre + " equipó un/a " + v.descripcionTipo());
     }
 
     protected void desequiparVehiculo() {
@@ -121,7 +130,7 @@ public class Repartidor {
         //¿tendría que tener un booleano que dice: vehíchulo disponible/ocupado?
         //sería útil hacerlo así
         if (vehiculoActual != null) {
-            System.out.println(nombre + " desequipó el " + vehiculoActual.descripcionTipo());
+            System.out.println(nombre + " desequipó el/la " + vehiculoActual.descripcionTipo());
             this.vehiculoActual = null;
         } else {
             System.out.println(nombre + " no tiene vehículo equipado.");

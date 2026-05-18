@@ -5,8 +5,10 @@ public class Moto extends Vehiculo{
 
     public Moto(String id, double capacidadCargaKg) {
         super(id, capacidadCargaKg);
+        this.distanciaMaxima = 200.0;
     }
-  
+    
+   
     @Override
     public void desplazarse(double distanciaKm) {
         double consumo = consumoDeBateria(distanciaKm);
@@ -36,8 +38,8 @@ public class Moto extends Vehiculo{
         double consumo = distancia * 0.5;
         return consumo;
     }
-
     
+   
     
 }
 

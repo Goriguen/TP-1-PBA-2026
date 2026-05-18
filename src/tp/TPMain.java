@@ -4,9 +4,7 @@ public class TPMain {
 
     public static void main(String[] args) {
 
-        Menu menu = new Menu();
-        menu.ejecutar();
-        
+       
         Vehiculo[] vehiculos = new Vehiculo[2];
         vehiculos[0] = new Moto("RAM-CABA01", 35);
         vehiculos[1] = new Camion(true, "RAA-ABA02", 35);
@@ -16,6 +14,11 @@ public class TPMain {
         // el tipo REAL del objeto (Moto o Camion) se determina en tiempo de ejecución.
         // Cuando Java ejecuta v.descripcionTipo(), invoca la versión sobrescrita de la subclase,
         // no la de Vehiculo. y es lo que permite que cada vehículo imprima su tipo correcto.
+        
+        //Se decidio agregar este atributo: "double distanciaMaxima" para poder validar que la distancia al punto de distribucion no exceda la distancia maxíma que puede recorrer, 
+        //tanto el repartidor como el vehiculo segun correspondan hacen los calculos con su respectivo coeficiente de uso de bateria/resistencia por distancia.
+        
+        
         for(Vehiculo v : vehiculos){
             System.out.println("El tipo de vehículo es: " + v.descripcionTipo() + "\n");
         }
@@ -29,7 +32,7 @@ public class TPMain {
         System.out.println(m1.toString());
         System.out.println(c1.toString());
         
-        System.out.println("Vamos a cargar bateria");
+        System.out.println("\nVamos a cargar bateria");
         System.out.println("La bateria actual es: " + m1.bateriaDisponible());
         m1.setBateriaActual(70.0);
         System.out.println("Si le resto 30 queda en: " + m1.bateriaDisponible());
@@ -39,16 +42,13 @@ public class TPMain {
         System.out.printf("La cantidad de bateria actual es: \n%.2f%%\n\n" , m1.bateriaDisponible());
         
         System.out.printf("El consumo de bateria de un camión es %.2f%%\n\n" , c1.consumoDeBateria(43));
-        System.out.printf("El consumo de bateria de una moto es es %.2f%%\n\n" , m1.consumoDeBateria(30));
+        System.out.printf("El consumo de bateria de una moto es %.2f%%\n\n" , m1.consumoDeBateria(30));
         
 
 
 
-
-        
-        
-        
-        
+        Menu menu = new Menu();
+        menu.ejecutar();
         
         
     }

@@ -8,7 +8,13 @@ public class Camion extends Vehiculo{
     public Camion(boolean tieneRemolque, String id,  double capacidadCargaKg) {
         super(id, capacidadCargaKg);
         this.tieneRemolque = tieneRemolque;
+        if (tieneRemolque == true){
+            this.distanciaMaxima = 40.0;
+        } else {
+            this.distanciaMaxima = 55.55;
+        }
     }
+
 
     @Override
     public void desplazarse(double distanciaKm) {
@@ -48,8 +54,7 @@ public class Camion extends Vehiculo{
                 + ", bateriaActual=" + bateriaDisponible()
                 + ", capacidadCargaKg=" + getCapacidadCargaKg()
                 + ", tieneRemolque=" + this.tieneRemolque
+                + ", distancia maxima que puede recorrer=" + this.distanciaMaxima + " Km"
                 + '}';
     }
-
-
 }

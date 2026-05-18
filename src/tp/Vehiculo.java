@@ -7,11 +7,13 @@ public abstract class Vehiculo {
     private double capacidadCargaKg;
     private static final double BATERIA_MAXIMA = 100;
     private double bateriaActual;
+    protected double distanciaMaxima; 
     
     public Vehiculo(String id, double capacidadCargaKg) {
         this.id = id;
         this.capacidadCargaKg = capacidadCargaKg;
-        this.bateriaActual = BATERIA_MAXIMA;
+        this.distanciaMaxima = distanciaMaxima;
+        this.bateriaActual = BATERIA_MAXIMA;   
     }
 
     public String getId() {
@@ -86,6 +88,8 @@ public abstract class Vehiculo {
         return this.getClass().getSimpleName() + '{' +
                 "id=" + getId() +
                 ", bateriaActual=" + bateriaDisponible() +
-                ", capacidadCargaKg=" + getCapacidadCargaKg() + '}';
+                ", capacidadCargaKg=" + getCapacidadCargaKg() + 
+                 ", distancia maxima que puede recorrer=" + this.distanciaMaxima + " Km"
+                + "}";
     }
 }
