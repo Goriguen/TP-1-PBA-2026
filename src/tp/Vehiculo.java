@@ -7,11 +7,13 @@ public abstract class Vehiculo {
     private double capacidadCargaKg;
     private static final double BATERIA_MAXIMA = 100;
     private double bateriaActual;
+    protected double distanciaMaxima; 
     
     public Vehiculo(String id, double capacidadCargaKg) {
         this.id = id;
         this.capacidadCargaKg = capacidadCargaKg;
-        this.bateriaActual = BATERIA_MAXIMA;
+        this.distanciaMaxima = distanciaMaxima;
+        this.bateriaActual = BATERIA_MAXIMA;   
     }
 
     public String getId() {
@@ -60,7 +62,7 @@ public abstract class Vehiculo {
         //3)¿Qué pasa si cantidad > 0?
         //4)¿Qué pasa si cantidad >= 0? ==> No aplica. La condición 1 y 2 evalúa si es = 0
         //5¿Qué pasa si cantidad > BATERIA_MAXIMA? ==> Se cumple en la condición 3
-        if(cantidad > 0 && cantidad > BATERIA_MAXIMA){
+        if(cantidad > BATERIA_MAXIMA){
             double diferencia = BATERIA_MAXIMA - bateriaActual;
             carga = diferencia + bateriaActual;
             setBateriaActual(carga);
@@ -86,6 +88,8 @@ public abstract class Vehiculo {
         return this.getClass().getSimpleName() + '{' +
                 "id=" + getId() +
                 ", bateriaActual=" + bateriaDisponible() +
-                ", capacidadCargaKg=" + getCapacidadCargaKg() + '}';
+                ", capacidadCargaKg=" + getCapacidadCargaKg() + 
+                 ", distancia maxima que puede recorrer=" + this.distanciaMaxima + " Km"
+                + "}";
     }
 }
